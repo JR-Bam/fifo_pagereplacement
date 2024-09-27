@@ -1,24 +1,6 @@
 #include "PageReplacer.hpp"
 #include <algorithm>
-#include <iostream>
 
-namespace Terminal{
-    static void clearScreen() {
-#ifdef _WIN32
-        system("cls");
-#elif defined(__APPLE__) || defined(__linux__)
-        system("clear");
-#else
-        cout << "Error determining platform." << endl;
-#endif
-    }
-
-    static void printReferenceString(int length, int* refString){
-        for (int i = 0; i < length; i++)
-            std::cout << refString[i] << ' ';
-        std::cout << "\n\n";
-    }
-}
 
 PageReplacer::PageReplacer(std::string refString, int pageFrame)
     : pageFrame{pageFrame}, refLength{(int)refString.length()},
@@ -30,25 +12,6 @@ PageReplacer::PageReplacer(std::string refString, int pageFrame)
 
     // Proceed to calculate the page replacement thing
     this->calculatePageReplacement();
-}
-
-void PageReplacer::printResultAll()
-{
-    Terminal::printReferenceString(refLength, refStringAsInt);
-    result.printResult();
-}
-
-void PageReplacer::printResultByFrame()
-{
-    for (int i = 0; i <= refLength; i++){ // I have absolutely no idea why this starts at 1 in the terminal
-        Terminal::clearScreen();
-        Terminal::printReferenceString(refLength, refStringAsInt);
-        result.printFrame(i);
-
-        std::cout << "Press enter to proceed... " << i << '/' << refLength << '\n';
-        std::cin.get();
-    }
-    std::cout << "Finished!\n";
 }
 
 void PageReplacer::refStrToInt(std::string& str)

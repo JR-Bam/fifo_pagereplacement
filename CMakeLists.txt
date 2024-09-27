@@ -7,6 +7,7 @@ set(SOURCES
     main.cpp
     PageReplacer.cpp 
     PageReplacementResult.cpp
+    ResultPrinter.cpp
 )
 add_executable(page_replacement_fifo ${SOURCES})
 
