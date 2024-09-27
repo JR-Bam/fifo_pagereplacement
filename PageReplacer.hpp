@@ -42,6 +42,7 @@ public:
     PageReplacer(std::string, int);
     void printResultAll();
     void printResultByFrame();
+    void prettyPrintResultAll();
     ~PageReplacer();
 };
 

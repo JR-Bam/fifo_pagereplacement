@@ -15,8 +15,7 @@ int main(){
     cin >> pageFrame;
 
     PageReplacer replacer(refString, pageFrame);
-    replacer.printResultByFrame();
-    replacer.printResultAll();
+    replacer.prettyPrintResultAll();
 
     return 0;
 }

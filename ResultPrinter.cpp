@@ -1,5 +1,7 @@
 #include "PageReplacer.hpp"
 #include <iostream>
+#include <string>
+#include "tabulate/table.hpp"
 
 namespace Terminal{
     static void clearScreen() {
@@ -16,6 +18,30 @@ namespace Terminal{
         for (int i = 0; i < length; i++)
             std::cout << refString[i] << ' ';
         std::cout << "\n\n";
+    }
+
+    static void prettyPrintReferenceString(int length, int* refString){
+        using namespace tabulate;
+        Table refTable;
+        refTable.format() // Format the borders and stuff
+            .border_bottom("_")
+            .border_top(" ")
+            .border_left(" ")
+            .border_right(" ")
+            .corner(" ")
+            .corner_bottom_left("_")
+            .corner_bottom_right("_")
+            .border_bottom_color(Color::cyan)
+            .corner_bottom_left_color(Color::cyan)
+            .corner_bottom_right_color(Color::cyan);
+
+        Table::Row_t refRow; // The row to include each digit of the reference string
+        for (int i = 0; i < length; i++)
+            refRow.push_back(std::to_string(refString[i]));
+        refTable.add_row(refRow);
+        refTable[0].format().font_align(FontAlign::center);
+
+        std::cout << refTable << std::endl; // Print it out
     }
 }
 
@@ -36,4 +62,9 @@ void PageReplacer::printResultByFrame()
         std::cin.get();
     }
     std::cout << "Finished!\n";
+}
+
+void PageReplacer::prettyPrintResultAll(){
+    Terminal::prettyPrintReferenceString(refLength, refStringAsInt);
+    result.prettyPrintResult();
 }
