@@ -37,6 +37,16 @@ void PageReplacementResult::printResult()
     if (frameList == nullptr) return;
     using namespace std;
 
+    for (int i = 0; i < refLength; i++){ // Display hit or misses
+        FrameResult result = frameList[i].result;
+
+        if (result == FrameResult::HIT){
+            cout << "  ";
+        } else {
+            cout << "* ";
+        }
+    }
+    cout << '\n';
     for (int i = 0; i < pageFrame; i++) { // Per row
         for (int j = 0; j < refLength; j++) { // Per frame/column
             int value = frameList[j].list[i];
@@ -50,7 +60,15 @@ void PageReplacementResult::printResult()
         cout << '\n';
     }
 
-    for (int i = 0; i < refLength; i++){ // Display hit or misses
+    cout << "\nHits/Misses: " << hitCount << "/" << missCOunt << '\n';
+}
+
+void PageReplacementResult::printFrame(int index)
+{
+    if (frameList == nullptr) return;
+    using namespace std;
+
+    for (int i = 0; i < index; i++){ // Display hit or misses
         FrameResult result = frameList[i].result;
 
         if (result == FrameResult::HIT){
@@ -59,6 +77,17 @@ void PageReplacementResult::printResult()
             cout << "* ";
         }
     }
-
-    cout << "\nHits/Misses: " << hitCount << "/" << missCOunt << '\n';
+    cout << '\n';
+    for (int i = 0; i < pageFrame; i++) { // Per row
+        for (int j = 0; j < index; j++) { // Per frame/column
+            int value = frameList[j].list[i];
+            
+            if (value != UNINITIALIZED) {
+                cout << value << ' ';
+            } else {
+                cout << "- ";
+            }
+        }
+        cout << '\n';
+    }
 }

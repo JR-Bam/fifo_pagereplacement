@@ -48,6 +48,7 @@ public:
     void markFrame(const int, FrameResult);
 
     void printResult();
+    void printFrame(int);
 };
 
 

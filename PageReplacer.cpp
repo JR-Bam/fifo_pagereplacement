@@ -2,6 +2,24 @@
 #include <algorithm>
 #include <iostream>
 
+namespace Terminal{
+    static void clearScreen() {
+#ifdef _WIN32
+        system("cls");
+#elif defined(__APPLE__) || defined(__linux__)
+        system("clear");
+#else
+        cout << "Error determining platform." << endl;
+#endif
+    }
+
+    static void printReferenceString(int length, int* refString){
+        for (int i = 0; i < length; i++)
+            std::cout << refString[i] << ' ';
+        std::cout << "\n\n";
+    }
+}
+
 PageReplacer::PageReplacer(std::string refString, int pageFrame)
     : pageFrame{pageFrame}, refLength{(int)refString.length()},
         result{PageReplacementResult(pageFrame, this->refLength)}
@@ -16,10 +34,21 @@ PageReplacer::PageReplacer(std::string refString, int pageFrame)
 
 void PageReplacer::printResultAll()
 {
-    for (int i = 0; i < refLength; i++)
-        std::cout << refStringAsInt[i] << ' ';
-    std::cout << "\n\n";
+    Terminal::printReferenceString(refLength, refStringAsInt);
     result.printResult();
+}
+
+void PageReplacer::printResultByFrame()
+{
+    for (int i = 0; i <= refLength; i++){ // I have absolutely no idea why this starts at 1 in the terminal
+        Terminal::clearScreen();
+        Terminal::printReferenceString(refLength, refStringAsInt);
+        result.printFrame(i);
+
+        std::cout << "Press enter to proceed... " << i << '/' << refLength << '\n';
+        std::cin.get();
+    }
+    std::cout << "Finished!\n";
 }
 
 void PageReplacer::refStrToInt(std::string& str)
@@ -81,3 +110,4 @@ PageReplacer::~PageReplacer()
 {
     delete[] refStringAsInt;
 }
+

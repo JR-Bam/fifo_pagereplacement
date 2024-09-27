@@ -41,7 +41,7 @@ private:
 public:
     PageReplacer(std::string, int);
     void printResultAll();
-    //TODO: void printResultByFrame();
+    void printResultByFrame();
     ~PageReplacer();
 };
 
