@@ -3,7 +3,6 @@
 using namespace std;
 
 
-
 int main(){
     std::string refString;
     int pageFrame;
@@ -15,8 +14,21 @@ int main(){
     cin >> pageFrame;
 
     PageReplacer replacer(refString, pageFrame);
-    replacer.printResultByFrame();
-    replacer.printResultAll();
+    
+    int printMethodChoice;
+    cout << "Print all at once (1) or frame by frame (2)?\n>> ";
+    cin >> printMethodChoice;
+
+    switch (printMethodChoice) {
+    case 1:
+        replacer.printResultAll();
+        break;
+    case 2:
+        replacer.printResultByFrame();
+        break;
+    default:
+        break;
+    }
 
     return 0;
 }

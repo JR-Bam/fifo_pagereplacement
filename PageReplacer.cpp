@@ -28,7 +28,7 @@ void PageReplacer::refStrToInt(std::string& str)
 void PageReplacer::calculatePageReplacement()
 {
     // Initializes a buffer that contains all uninitialized frame data
-    int* prevFrameData = new int[pageFrame]; // TODO : Try to free this without making this code more bullshit 
+    int* prevFrameData = result.getList()[0].list;
     std::fill(prevFrameData, prevFrameData + pageFrame, UNINITIALIZED);
     
     for (int i = 0; i < refLength; i++){

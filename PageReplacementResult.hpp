@@ -49,6 +49,7 @@ public:
 
     void printResult();
     void printFrame(int);
+    void printHitRatio();
 };
 
 

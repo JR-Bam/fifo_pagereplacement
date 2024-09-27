@@ -60,7 +60,6 @@ void PageReplacementResult::printResult()
         cout << '\n';
     }
 
-    cout << "\nHits/Misses: " << hitCount << "/" << missCOunt << '\n';
 }
 
 void PageReplacementResult::printFrame(int index)
@@ -90,4 +89,9 @@ void PageReplacementResult::printFrame(int index)
         }
         cout << '\n';
     }
+}
+
+void PageReplacementResult::printHitRatio()
+{
+    std::cout << "Hits/Misses: " << hitCount << "/" << missCOunt << "\n\n";
 }

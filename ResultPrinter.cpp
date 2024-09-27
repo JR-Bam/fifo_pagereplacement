@@ -21,19 +21,23 @@ namespace Terminal{
 
 void PageReplacer::printResultAll()
 {
+    Terminal::clearScreen();
     Terminal::printReferenceString(refLength, refStringAsInt);
     result.printResult();
+    result.printHitRatio();
 }
 
 void PageReplacer::printResultByFrame()
 {
-    for (int i = 0; i <= refLength; i++){ // I have absolutely no idea why this starts at 1 in the terminal
+    // I have absolutely no idea why this starts at 1 in the terminal
+    for (int i = 0; i <= refLength; i++){ 
         Terminal::clearScreen();
         Terminal::printReferenceString(refLength, refStringAsInt);
         result.printFrame(i);
 
         std::cout << "Press enter to proceed... " << i << '/' << refLength << '\n';
-        std::cin.get();
+        std::cin.get(); // Awaits user to press enter
     }
     std::cout << "Finished!\n";
+    result.printHitRatio();
 }
