@@ -1,14 +1,33 @@
+/*
+ *   Group 1: FIFO
+ *   Members:
+ *       Simyunn, Jan Ryan
+ *       Aquino, Nathanielle Dae
+ *       Lim, Jan Eriko
+ */
+
 #include <iostream>
 #include "PageReplacer.hpp"
 using namespace std;
 
+bool refStrValid(const std::string& refStr){
+    for (int i = 0; i < refStr.length(); i++){
+        if (refStr[i] < 48 || refStr[i] > 57){
+            std::cout << "Invalid format.\n";
+            return false;
+        }
+    }
+    return true;
+}
 
 int main(){
     std::string refString;
     int pageFrame;
 
-    cout << "Enter refString: ";
-    cin >> refString;
+    do{
+        cout << "Enter refString: ";
+        cin >> refString;
+    } while (!refStrValid(refString));
 
     cout << "Enter pageFrame: ";
     cin >> pageFrame;
