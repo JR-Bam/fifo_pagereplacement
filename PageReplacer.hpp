@@ -35,7 +35,7 @@ private:
 
     void refStrToInt(std::string&);
     void calculatePageReplacement();
-    bool isInColumnList(const int, const int*);
+    bool isInColumn(const int, const int*);
     void pushToColumn(int, int*);
 
 public:

@@ -36,7 +36,7 @@ int main(){
     PageReplacer replacer(refString, pageFrame);
     
     int printMethodChoice;
-    cout << "Print all at once (1) or frame by frame (2)?\n>> ";
+    cout << "Print all at once (1) or column by column (2)?\n>> ";
     cin >> printMethodChoice;
 
     switch (printMethodChoice) {

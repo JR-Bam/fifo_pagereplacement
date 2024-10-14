@@ -35,24 +35,33 @@ void PageReplacer::calculatePageReplacement()
         Column* currentColumn = &result.getList()[i];
         const int currRefInt = refStringAsInt[i];
 
-        // Copies the previous frame data to the current
+        // Copies the previous column data to the current column
         std::copy(prevColumnArr, prevColumnArr + pageFrame, currentColumn->array);
 
         // The current frame data can either be left alone or a value can be pushed
         // Depending if there was a hit or miss
-        if (isInColumnList(currRefInt, currentColumn->array)){
+        if (isInColumn(currRefInt, currentColumn->array)){
             result.markColumn(i, ColumnResult::HIT);
         } else {
             result.markColumn(i, ColumnResult::MISS);
             pushToColumn(currRefInt, currentColumn->array);
         }
+        // 4th Iteration
+        /*      v
+            4 6 7 6 5 7 4 5 7
+            
+            4 6 7 7
+            - 4 6 6
+            - - 4 4
+            * * *
+        */
         
         // Sets the buffer to point to the current frame data for the next iteration.
         prevColumnArr = currentColumn->array;
     }
 }
 
-bool PageReplacer::isInColumnList(const int reference, const int *columnArr)
+bool PageReplacer::isInColumn(const int reference, const int *columnArr)
 {
     for (int i = 0; i < pageFrame; i++){
         if (reference == columnArr[i])
