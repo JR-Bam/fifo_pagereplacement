@@ -33,7 +33,7 @@ void PageReplacer::printResultByColumn()
     for (int i = 0; i <= refLength; i++){ 
         Terminal::clearScreen();
         Terminal::printReferenceString(refLength, refStringAsInt);
-        result.printColumn(i);
+        result.printUptoColumn(i);
 
         std::cout << "Press enter to proceed... " << i << '/' << refLength << '\n';
         std::cin.get(); // Awaits user to press enter

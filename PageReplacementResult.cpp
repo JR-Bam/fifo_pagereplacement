@@ -62,7 +62,7 @@ void PageReplacementResult::printResult()
 
 }
 
-void PageReplacementResult::printColumn(int index)
+void PageReplacementResult::printUptoColumn(int index)
 {
     if (columnList == nullptr) return;
     using namespace std;

@@ -49,7 +49,7 @@ public:
     void markColumn(const int, ColumnResult);
 
     void printResult();
-    void printColumn(int);
+    void printUptoColumn(int);
     void printHitRatio();
 };
 
