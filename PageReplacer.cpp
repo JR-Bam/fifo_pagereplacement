@@ -28,45 +28,45 @@ void PageReplacer::refStrToInt(std::string& str)
 void PageReplacer::calculatePageReplacement()
 {
     // Initializes a buffer that contains all uninitialized frame data
-    int* prevFrameData = result.getList()[0].list;
-    std::fill(prevFrameData, prevFrameData + pageFrame, UNINITIALIZED);
+    int* prevColumnArr = result.getList()[0].array;
+    std::fill(prevColumnArr, prevColumnArr + pageFrame, UNINITIALIZED);
     
     for (int i = 0; i < refLength; i++){
-        Frame* currFrame = &result.getList()[i];
+        Column* currentColumn = &result.getList()[i];
         const int currRefInt = refStringAsInt[i];
 
         // Copies the previous frame data to the current
-        std::copy(prevFrameData, prevFrameData + pageFrame, currFrame->list);
+        std::copy(prevColumnArr, prevColumnArr + pageFrame, currentColumn->array);
 
         // The current frame data can either be left alone or a value can be pushed
         // Depending if there was a hit or miss
-        if (isInFrameList(currRefInt, currFrame->list)){
-            result.markFrame(i, FrameResult::HIT);
+        if (isInColumnList(currRefInt, currentColumn->array)){
+            result.markColumn(i, ColumnResult::HIT);
         } else {
-            result.markFrame(i, FrameResult::MISS);
-            pushFrame(currRefInt, currFrame->list);
+            result.markColumn(i, ColumnResult::MISS);
+            pushToColumn(currRefInt, currentColumn->array);
         }
         
         // Sets the buffer to point to the current frame data for the next iteration.
-        prevFrameData = currFrame->list;
+        prevColumnArr = currentColumn->array;
     }
 }
 
-bool PageReplacer::isInFrameList(const int reference, const int *frame)
+bool PageReplacer::isInColumnList(const int reference, const int *columnArr)
 {
     for (int i = 0; i < pageFrame; i++){
-        if (reference == frame[i])
+        if (reference == columnArr[i])
             return true;
     }
     return false;
 }
 
-void PageReplacer::pushFrame(int toPush, int *frame)
+void PageReplacer::pushToColumn(int toPush, int *columnArr)
 {
     for (int i = pageFrame - 1; i > 0; i--){
-        frame[i] = frame[i-1];
+        columnArr[i] = columnArr[i-1];
     }
-    frame[0] = toPush;
+    columnArr[0] = toPush;
 }
 
 PageReplacer::~PageReplacer()

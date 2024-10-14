@@ -35,13 +35,13 @@ private:
 
     void refStrToInt(std::string&);
     void calculatePageReplacement();
-    bool isInFrameList(const int, const int*);
-    void pushFrame(int, int*);
+    bool isInColumnList(const int, const int*);
+    void pushToColumn(int, int*);
 
 public:
     PageReplacer(std::string, int);
     void printResultAll();
-    void printResultByFrame();
+    void printResultByColumn();
     ~PageReplacer();
 };
 

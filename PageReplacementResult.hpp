@@ -10,24 +10,25 @@
     - - - - - - - - 2
     * * *           *
 
-    >> frameList[2].list = {4, 3, 2, 10}
-    >> frameList[2].result = FrameResult::MISS
+    >> columnList[2].list = {4, 3, 2, 10}
+    >> columnList[2].result = ColumnResult::MISS
 
     >> see the example of refLength and pageFrame on `PageReplacer.hpp`
 */
 #pragma once
 #ifndef PAGE_REPLACEMENT_RESULT_HPP
 #define PAGE_REPLACEMENT_RESULT_HPP
+
 #define UNINITIALIZED 10 // I set 10 as uninitialized because a data can only hold 0-9
 
-enum class FrameResult {
+enum class ColumnResult {
     HIT,
     MISS
 };
 
-struct Frame{ // treat as a java data class
-    int* list = nullptr; 
-    FrameResult result;
+struct Column{ // treat as a java data class
+    int* array = nullptr; 
+    ColumnResult result;
 };
 
 class PageReplacementResult
@@ -39,16 +40,16 @@ private:
     int refLength;
     int pageFrame;
 
-    Frame* frameList;
+    Column* columnList;
 public:
     PageReplacementResult(const int, const int);
     ~PageReplacementResult();
 
-    Frame* getList();
-    void markFrame(const int, FrameResult);
+    Column* getList();
+    void markColumn(const int, ColumnResult);
 
     void printResult();
-    void printFrame(int);
+    void printColumn(int);
     void printHitRatio();
 };
 

@@ -27,13 +27,13 @@ void PageReplacer::printResultAll()
     result.printHitRatio();
 }
 
-void PageReplacer::printResultByFrame()
+void PageReplacer::printResultByColumn()
 {
     // I have absolutely no idea why this starts at 1 in the terminal
     for (int i = 0; i <= refLength; i++){ 
         Terminal::clearScreen();
         Terminal::printReferenceString(refLength, refStringAsInt);
-        result.printFrame(i);
+        result.printColumn(i);
 
         std::cout << "Press enter to proceed... " << i << '/' << refLength << '\n';
         std::cin.get(); // Awaits user to press enter

@@ -4,6 +4,7 @@
  *       Simyunn, Jan Ryan
  *       Aquino, Nathanielle Dae
  *       Lim, Jan Eriko
+ *       Alawaddin, Al-Nadheem
  */
 
 #include <iostream>
@@ -43,7 +44,7 @@ int main(){
         replacer.printResultAll();
         break;
     case 2:
-        replacer.printResultByFrame();
+        replacer.printResultByColumn();
         break;
     default:
         break;
