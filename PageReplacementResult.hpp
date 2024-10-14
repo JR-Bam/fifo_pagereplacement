@@ -10,7 +10,7 @@
     - - - - - - - - 2
     * * *           *
 
-    >> columnList[2].list = {4, 3, 2, 10}
+    >> columnList[2].array = {4, 3, 2, 10}
     >> columnList[2].result = ColumnResult::MISS
 
     >> see the example of refLength and pageFrame on `PageReplacer.hpp`
