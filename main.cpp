@@ -5,6 +5,8 @@
  *       Aquino, Nathanielle Dae
  *       Lim, Jan Eriko
  *       Alawaddin, Al-Nadheem
+ * 
+ *   This project uses CMAKE to build and run.
  */
 
 #include <iostream>
