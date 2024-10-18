@@ -46,15 +46,6 @@ void PageReplacer::calculatePageReplacement()
             result.markColumn(i, ColumnResult::MISS);
             pushToColumn(currRefInt, currentColumn->array);
         }
-        // 4th Iteration
-        /*      v
-            4 6 7 6 5 7 4 5 7
-            
-            4 6 7 7
-            - 4 6 6
-            - - 4 4
-            * * *
-        */
         
         // Sets the buffer to point to the current frame data for the next iteration.
         prevColumnArr = currentColumn->array;
